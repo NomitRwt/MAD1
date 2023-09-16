@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%if is_product and product%}
+        <a>Product found</a>
+    {%elif is_product and not product%}
+        <a>Product not found</a>
+    {%elif not is_product and category%}
+        <a>Category found</a>
+    {%else%}
+        <a>Category not found</a>
+    {%endif%}
+</body>
+</html>

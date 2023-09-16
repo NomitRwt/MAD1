@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Overview</h1>
+    <table>
+        <tr>
+        <th>Available Products</th>
+        </tr>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.pname }}</td>
+                </tr>
+            {% endfor %}
+        <tr>
+        <tr>
+            <td ><a href={{ url_for("product") }}>Product update</a></td>
+        </tr>
+        <th>Current Categories<th>
+        </tr>
+            {% for category in categories %}
+            <tr>
+                <td>{{ category.cname }}</td>
+            </tr>
+            {% endfor %}
+        <tr>
+            <td ><a href={{ url_for("category") }}>Category updates</a></td>
+        </tr>
+    </table>
+</body>
+</html>

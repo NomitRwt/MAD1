@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Notice how the CSS is added -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome</h1>
+    <form method="post" action="/login">
+    <table>
+        <thead>
+            <tr>
+                <th>Category ID</th>
+                <th>Name</th>
+                <th>Count</th>
+                <th>Price</th>
+                <th>Add to cart</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.category.cname }}</td>
+                    <td>{{ product.pname }}</td>
+                    <td>{{ product.pcount }}</td>
+                    <td>{{ product.pprice }}</td>
+                    {% if product.pcount == 0%}
+                        <td>Out of Stock</td>
+                    {%else%}
+                        <td><input name={{product.pid}} placeholder="count"></td>
+                    {%endif%}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button>Submit</button>
+    </form>
+    <a href={{url_for("search")}}>Search by product or category name</a>
+    {%if product_count_negative%}
+        <div><a>More products purchased than available</a></div>
+    {%endif%}
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Category list </h1>
+    <a>Deleting the category would move the associated products to miscellaneous</a>
+        {% if categories | length == 0 %}
+            <p>No Categories. Add category now!</p>
+        {% else %}    
+            <table id = "all-categories">
+            <tr>
+                <th>SNo</th>
+                <th>Category Name</th>
+                <th>Actions</th>
+            </tr>
+            {% for category in categories %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{category.cname}}</td>
+                    <td>
+                    {% if category.cid == 1 %}
+                        <a></a>
+                        <a></a>
+                    {% else %}
+                        <a href="/category/update/{{category.cid}}" type="button">Update</a>
+                        <a href="/category/delete/{{category.cid}}" type="button">Delete</a>
+                    {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+        <form method = "post">
+            <p>Add category</p>
+            <input name="cname" placeholder="Category Name" required/>
+            <button>Submit</button>
+        </form>
+        <a href={{url_for("product")}}> Add products to a category</a>
+</body>
+</html>

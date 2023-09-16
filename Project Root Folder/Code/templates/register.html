@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">
+
+        <p>Register</p>
+        <input name="fname" placeholder="first name" required/>            
+        <input name="lname" placeholder="last name"/>
+        <input name="username" placeholder="username" required/>
+        <input type="password" name="password" placeholder="password" required/>
+
+        <button>Login</button>
+        <a href={{url_for('index')}}>Back to sign in</a>
+    </form>
+    {%if again%}
+        <a>User exits</a>
+    {%endif%}
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Update product details</h1>
+    <p>Name: {{product.pname}}, Count: {{product.pcount}}, Category: {{categorydict[product.pcid]}}, Price: {{product.pprice}}</p>        
+    <form method="post">
+        <p>Update details</p>
+        <input name="pname" placeholder="new name"/>            
+        <select name="change_count">
+            <option value="add">Add more products</option>
+            <option value="remove">Remove some products</option>
+        </select>
+        <input name="pcount" placeholder="count"/>
+        <select name="change_category">
+            <option value="none">Select an Option</option>
+            {%for category in categories%}
+            <option value={{category.cid}}>{{category.cname}}</option>
+            {%endfor%}
+        </select>
+        <input name="pprice" placeholder="price"/>
+        <button>Submit</button>
+    </form>
+    <a href={{url_for("category")}}> Create a category for the product</a>
+    {%if was_price_negative%}
+        <div><a>The price cannot be negative</a></div>
+    {%endif%}       
+    {%if was_count_negative%}
+        <div><a>The count cannot be negative</a></div>
+    {%endif%}
+    {%if is_count_becoming_negative%}
+        <div><a>The count of products in store is becoming negative</a></div>
+    {%endif%}
+</body>
+</html>

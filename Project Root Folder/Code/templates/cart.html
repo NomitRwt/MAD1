@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Cart</h1>
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th>Product Total</th>
+        </tr>
+        {%for pid in items_bought%}
+            <tr>
+                <td>{{items_bought[pid][0]}}</td>
+                <td>{{items_bought[pid][1]}}</td>
+            </tr>
+        {%endfor%}
+        <tr>
+        <tr>
+            <td>Cart total: {{total_cost}}</td>
+        </tr>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Product list </h1>
+        {% if products | length == 0 %}
+            <p>No products. Add products now!</p>
+        {% else %}    
+            <table id = "all-products">
+            <tr>
+                <th>SNo</th>
+                <th>Product Name</th>
+                <th>Product Unit Price (INR)</th>
+                <th>Product Count</th>
+                <th>Product Category</th>
+                <th>Actions</th>
+            </tr>
+            {% for product in products %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{product.pname}}</td>
+                    <td>{{product.pprice}}</td>
+                    <td>{{product.pcount}}</td>
+                    <td>{{categorydict[product.pcid]}}</td>
+                    <td>
+                    <a href="/product/update/{{product.pid}}" type="button">Update</a>
+                    <a href="/product/delete/{{product.pid}}" type="button">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+        <form method = "post">
+            <p>Add product</p>
+            <input name="pname" placeholder="Product Name" required >
+            <input name="pprice" placeholder="Product Price" required >
+            <input name="pcount" placeholder="Product Count" required >
+            <select name="pcid">
+                {%for category in categories%}
+                <option value={{category.cid}}>{{category.cname}}</option>
+                {%endfor%}
+            </select>
+            <button>Submit</button>
+        </form>
+        <a href={{url_for("category")}}> Create a category for the product</a>
+        {%if was_price_negative%}
+            <div><a>The price cannot be negative</a></div>
+        {%endif%}       
+        {%if was_count_negative%}
+            <div><a>The count cannot be negative</a></div>
+        {%endif%}
+</body>
+</html>
